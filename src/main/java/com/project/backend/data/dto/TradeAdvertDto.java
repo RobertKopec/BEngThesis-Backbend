@@ -1,18 +1,13 @@
-package com.project.backend.data.entity;
+package com.project.backend.data.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
 @Getter
 @Setter
-public class TradeAdvert {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class TradeAdvertDto {
     private long ID;
 
     private String title;
@@ -20,7 +15,6 @@ public class TradeAdvert {
     private double price;
     private Date createDate;
     private String category;
-
     private String number;
     private String address;
     private String state;
@@ -28,12 +22,10 @@ public class TradeAdvert {
     private boolean personal;
     private boolean shipment;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "userID")
-    private User user;
+    private UserDto user;
 
-    public TradeAdvert(String title, String description, double price, Date createDate, String category, String number, String address, String state, String picture, boolean personal, boolean shipment, User user) {
+    public TradeAdvertDto(long ID, String title, String description, double price, Date createDate, String category, String number, String address, String state, String picture, boolean personal, boolean shipment, UserDto user) {
+        this.ID = ID;
         this.title = title;
         this.description = description;
         this.price = price;
@@ -48,6 +40,6 @@ public class TradeAdvert {
         this.user = user;
     }
 
-    public TradeAdvert() {
+    public TradeAdvertDto() {
     }
 }
