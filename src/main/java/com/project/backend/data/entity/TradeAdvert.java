@@ -1,12 +1,12 @@
 package com.project.backend.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.backend.data.dto.UserDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,7 +14,7 @@ import java.util.Date;
 public class TradeAdvert {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
+    private long tradeAdvertId;
 
     private String title;
     @Column( length = 1000000 )
@@ -32,8 +32,11 @@ public class TradeAdvert {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "userId")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "tradeAdvert")
+    private List<Favourite> favourites;
 
     public TradeAdvert(String title, String description, double price, Date createDate, String category, String telNumber, String city, String state, String picture, boolean personal, boolean shipment,String tags, User user) {
         this.title = title;

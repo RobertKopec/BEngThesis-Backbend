@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface TradeAdvertRepository extends CrudRepository<TradeAdvert, Long> {
     List<TradeAdvert> getAdvertsByUser(User user);
+    TradeAdvert getAdvertsByTradeAdvertId(long tradeAdvertId);
 }

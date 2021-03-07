@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userID;
+    private long userId;
 
     private String login;
     private String password;
@@ -24,6 +24,9 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<TradeAdvert> tradeAdverts;
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "user")
+    private List<Favourite> favourites;
 
     public User(String login, String password, String userName, String telNumber, String email, String city, List<TradeAdvert> tradeAdverts) {
         this.login = login;

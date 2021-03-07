@@ -4,12 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 public class TradeAdvertDto {
-    private long ID;
+    private long tradeAdvertId;
 
     private String title;
     private String description;
@@ -26,8 +25,8 @@ public class TradeAdvertDto {
 
     private UserDto user;
 
-    public TradeAdvertDto(long ID, String title, String description, double price, Date createDate, String category, String telNumber, String city, String state, String picture, boolean personal, boolean shipment, String tags, UserDto user) {
-        this.ID = ID;
+    public TradeAdvertDto(long tradeAdvertId, String title, String description, double price, Date createDate, String category, String telNumber, String city, String state, String picture, boolean personal, boolean shipment, String tags, UserDto user) {
+        this.tradeAdvertId = tradeAdvertId;
         this.title = title;
         this.description = description;
         this.price = price;

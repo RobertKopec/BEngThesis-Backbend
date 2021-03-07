@@ -48,11 +48,11 @@ public class TradeAdvertController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/{userID}")
+    @GetMapping("/{userId}")
     public @ResponseBody
-    List<TradeAdvert> getAdvertByUserId(HttpServletResponse response, @PathVariable Long userID) {
+    List<TradeAdvert> getAdvertByUserId(HttpServletResponse response, @PathVariable Long userId) {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-        User user = userRepository.findUserByUserID(userID);
+        User user = userRepository.findUserByUserId(userId);
         return tradeAdvertRepository.getAdvertsByUser(user);
     }
 }
