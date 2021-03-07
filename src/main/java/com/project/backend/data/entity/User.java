@@ -20,18 +20,18 @@ public class User {
     private String userName;
     private String telNumber;
     private String email;
-    private String address;
+    private String city;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<TradeAdvert> tradeAdverts;
 
-    public User(String login, String password, String userName, String telNumber, String email, String address, List<TradeAdvert> tradeAdverts) {
+    public User(String login, String password, String userName, String telNumber, String email, String city, List<TradeAdvert> tradeAdverts) {
         this.login = login;
         this.password = password;
         this.userName = userName;
         this.telNumber = telNumber;
         this.email = email;
-        this.address = address;
+        this.city = city;
         this.tradeAdverts = tradeAdverts;
     }
 

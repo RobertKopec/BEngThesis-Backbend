@@ -22,12 +22,22 @@ public class TradeAdvertController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/add")
-    public void addNewTradeAdvert(@RequestBody TradeAdvertDto requestTradeAdvertDto) {
+    public @ResponseBody
+    void addNewTradeAdvert(HttpServletResponse response, @RequestBody TradeAdvertDto requestTradeAdvertDto) {
         User user = this.userRepository.findUserByLogin(requestTradeAdvertDto.getUser().getLogin());
-        TradeAdvert tradeAdvert = new TradeAdvert(requestTradeAdvertDto.getTitle(), requestTradeAdvertDto.getDescription(), requestTradeAdvertDto.getPrice(), requestTradeAdvertDto.getCreateDate(),
-                requestTradeAdvertDto.getCategory(), requestTradeAdvertDto.getNumber(), requestTradeAdvertDto.getAddress(), requestTradeAdvertDto.getState(), requestTradeAdvertDto.getPicture(),
-                requestTradeAdvertDto.isPersonal(), requestTradeAdvertDto.isShipment(), user);
-        tradeAdvertRepository.save(tradeAdvert);
+        TradeAdvert tradeAdvert = new TradeAdvert(requestTradeAdvertDto.getTitle(), requestTradeAdvertDto.getDescription(),
+                requestTradeAdvertDto.getPrice(), requestTradeAdvertDto.getCreateDate(), requestTradeAdvertDto.getCategory(),
+                requestTradeAdvertDto.getTelNumber(), requestTradeAdvertDto.getCity(), requestTradeAdvertDto.getState(),
+                requestTradeAdvertDto.getPicture(), requestTradeAdvertDto.isPersonal(), requestTradeAdvertDto.isShipment(), requestTradeAdvertDto.getTags(), user);
+
+        if (user != null && tradeAdvert.getTitle() != null && tradeAdvert.getDescription() != null && tradeAdvert.getPrice() != 0
+                && tradeAdvert.getCreateDate() != null && tradeAdvert.getCategory() != null && tradeAdvert.getTelNumber() != null
+                && tradeAdvert.getCity() != null && tradeAdvert.getState() != null && tradeAdvert.getPicture() != null) {
+            response.setStatus(201);
+            tradeAdvertRepository.save(tradeAdvert);
+        } else
+            response.setStatus(400);
+
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -42,6 +52,7 @@ public class TradeAdvertController {
     public @ResponseBody
     List<TradeAdvert> getAdvertByUserId(HttpServletResponse response, @PathVariable Long userID) {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-        return tradeAdvertRepository.getAdvertsByUserId(userID);
+        User user = userRepository.findUserByUserID(userID);
+        return tradeAdvertRepository.getAdvertsByUser(user);
     }
 }

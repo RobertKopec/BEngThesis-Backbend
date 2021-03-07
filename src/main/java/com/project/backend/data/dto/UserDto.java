@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 public class UserDto {
     private long userID;
-    private String address;
+    private String city;
     private String email;
     private String login;
     private String password;
@@ -17,9 +17,9 @@ public class UserDto {
     private String userName;
     private List<TradeAdvertDto> tradeAdverts;
 
-    public UserDto(long userID, String address, String email, String login, String password, String telNumber, String userName) {
+    public UserDto(long userID, String city, String email, String login, String password, String telNumber, String userName) {
         this.userID = userID;
-        this.address = address;
+        this.city = city;
         this.email = email;
         this.login = login;
         this.password = password;
