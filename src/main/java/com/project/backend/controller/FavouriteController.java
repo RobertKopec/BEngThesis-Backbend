@@ -60,7 +60,7 @@ public class FavouriteController {
 
         if(user != null && advert != null){
             if(this.favouriteRepository.findByUserAndTradeAdvert(user,advert) != null){
-                response.setStatus(409);
+                response.setStatus(200);
                 this.favouriteRepository.deleteByUserAndTradeAdvert(user, advert);
             } else {
                 response.setStatus(404);
