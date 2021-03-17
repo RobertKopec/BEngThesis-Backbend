@@ -1,5 +1,6 @@
 package com.project.backend.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,7 @@ public class User {
     private String email;
     private String city;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<TradeAdvert> tradeAdverts;
 

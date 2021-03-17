@@ -1,5 +1,6 @@
 package com.project.backend.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class Favourite {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long favouriteId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="userId")
     private User user;

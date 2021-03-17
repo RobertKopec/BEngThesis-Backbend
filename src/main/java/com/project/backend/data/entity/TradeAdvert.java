@@ -35,6 +35,7 @@ public class TradeAdvert {
     @JoinColumn(name = "userId")
     private User user;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "tradeAdvert")
     private List<Favourite> favourites;
 
