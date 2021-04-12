@@ -11,20 +11,20 @@ public class UserDto {
     private long userId;
     private String city;
     private String email;
-    private String login;
     private String password;
     private String telNumber;
     private String userName;
+    private String role;
     private List<TradeAdvertDto> tradeAdverts;
 
-    public UserDto(long userId, String city, String email, String login, String password, String telNumber, String userName) {
+    public UserDto(long userId, String city, String role, String email, String password, String telNumber, String userName) {
         this.userId = userId;
         this.city = city;
         this.email = email;
-        this.login = login;
         this.password = password;
         this.telNumber = telNumber;
         this.userName = userName;
+        this.role = role;
     }
 
     public UserDto() {

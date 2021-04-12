@@ -16,12 +16,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userId;
 
-    private String login;
     private String password;
     private String userName;
     private String telNumber;
     private String email;
     private String city;
+    private String role;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -30,13 +30,14 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "user")
     private List<Favourite> favourites;
 
-    public User(String login, String password, String userName, String telNumber, String email, String city, List<TradeAdvert> tradeAdverts) {
-        this.login = login;
+    public User(String password, String userName, String telNumber, String email, String city, String role,
+                List<TradeAdvert> tradeAdverts) {
         this.password = password;
         this.userName = userName;
         this.telNumber = telNumber;
         this.email = email;
         this.city = city;
+        this.role = role;
         this.tradeAdverts = tradeAdverts;
     }
 

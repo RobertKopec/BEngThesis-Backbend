@@ -24,17 +24,18 @@ public class FavouriteController {
     private FavouriteRepository favouriteRepository;
     @Autowired
     private TradeAdvertRepository tradeAdvertRepository;
+    private final String CLIENT_APP_DEV_URL = "http://localhost:4200";
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = CLIENT_APP_DEV_URL)
     @GetMapping("/{userId}")
     public @ResponseBody
     List<Favourite> getFavouriteAdvertsByUserId(HttpServletResponse response, @PathVariable Long userId) {
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+        response.setHeader("Access-Control-Allow-Origin", CLIENT_APP_DEV_URL);
         User user = userRepository.findUserByUserId(userId);
         return favouriteRepository.findAllByUser(user);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = CLIENT_APP_DEV_URL)
     @PostMapping("/add/{userId}/{advertId}")
     public @ResponseBody
     void addNewFavouriteTradeAdvert(HttpServletResponse response, @PathVariable("userId") Long userId, @PathVariable("advertId") Long advertId) {
@@ -53,11 +54,11 @@ public class FavouriteController {
     }
 
     @Transactional
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = CLIENT_APP_DEV_URL)
     @RequestMapping(value = "/remove/{userId}/{advertId}", method = RequestMethod.DELETE)
     public @ResponseBody
     void removeFavouriteTradeAdvert(HttpServletResponse response, @PathVariable("userId") Long userId, @PathVariable("advertId") Long advertId) {
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+        response.setHeader("Access-Control-Allow-Origin", CLIENT_APP_DEV_URL);
         User user = userRepository.findUserByUserId(userId);
         TradeAdvert advert = tradeAdvertRepository.getAdvertsByTradeAdvertId(advertId);
 

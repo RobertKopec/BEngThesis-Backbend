@@ -20,7 +20,6 @@ public class TradeAdvert {
     @Column( length = 1000000 )
     private String description;
     private double price;
-    private Date createDate;
     private String category;
     private String telNumber;
     private String city;
@@ -29,6 +28,7 @@ public class TradeAdvert {
     private boolean personal;
     private boolean shipment;
     private String tags;
+    private String userName;
 
     @JsonIgnore
     @ManyToOne
@@ -39,11 +39,12 @@ public class TradeAdvert {
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "tradeAdvert")
     private List<Favourite> favourites;
 
-    public TradeAdvert(String title, String description, double price, Date createDate, String category, String telNumber, String city, String state, String picture, boolean personal, boolean shipment,String tags, User user) {
+    public TradeAdvert(String title, String description, double price, String category,
+                       String telNumber, String city, String state, String picture, boolean personal,
+                       boolean shipment, String tags, String userName, User user) {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.createDate = createDate;
         this.category = category;
         this.telNumber = telNumber;
         this.city = city;
@@ -52,6 +53,7 @@ public class TradeAdvert {
         this.personal = personal;
         this.shipment = shipment;
         this.tags = tags;
+        this.userName = userName;
         this.user = user;
     }
 

@@ -13,7 +13,6 @@ public class TradeAdvertDto {
     private String title;
     private String description;
     private double price;
-    private Date createDate;
     private String category;
     private String telNumber;
     private String city;
@@ -22,15 +21,17 @@ public class TradeAdvertDto {
     private boolean personal;
     private boolean shipment;
     private String tags;
+    private String userName;
 
     private UserDto user;
 
-    public TradeAdvertDto(long tradeAdvertId, String title, String description, double price, Date createDate, String category, String telNumber, String city, String state, String picture, boolean personal, boolean shipment, String tags, UserDto user) {
+    public TradeAdvertDto(long tradeAdvertId, String title, String description, double price,
+                          String category, String telNumber, String city, String state, String picture, boolean personal,
+                          boolean shipment, String tags, String userName, UserDto user) {
         this.tradeAdvertId = tradeAdvertId;
         this.title = title;
         this.description = description;
         this.price = price;
-        this.createDate = createDate;
         this.category = category;
         this.telNumber = telNumber;
         this.city = city;
@@ -39,6 +40,7 @@ public class TradeAdvertDto {
         this.personal = personal;
         this.shipment = shipment;
         this.tags = tags;
+        this.userName = userName;
         this.user = user;
     }
 
